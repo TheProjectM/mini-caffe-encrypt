@@ -102,6 +102,31 @@ checkout Python API [here](python), install package via `python setup.py install
 
 To use Mini-Caffe as a library, you may refer to [example](example).
 
+### How to encrypt your prototxt and caffemodel
+
+After the project built, there will be a `caffe_encrypt_tool` tool under the build dir, run the program:  
+```
+./caffe_encrypt_tool {path_to.prototxt|path_to.caffemodel} {password}
+```
+and you will get a `path_to_encrypted.prototxt|path_to_encrypted.caffemodel` in the same dir as arg1.  
+
+### How to use the encrypted prototxt and caffemodel in your program.
+
+```
+#include <caffe/caffe.hpp>
+
+std::shared_ptr<caffe::Net> net_;
+std::string prototxt = "your_encrypted.prototxt";
+std::string caffemodel = "your_encrypted.caffemodel";
+
+// initialize the encrypted prototxt
+caffe::encrypt_tool::decrypt_proto(prototxt, "your password", net_);
+
+// load the encrypted trained caffemodel
+caffe::encrypt_tool::decrypt_binary(caffemodel, "your password", net_);
+```
+
+
 ### How to profile your network
 
 The Profiler in Mini-Caffe can help you profile your network performance, see docs [here](profile.md).
