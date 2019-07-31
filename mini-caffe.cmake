@@ -132,6 +132,6 @@ source_group(src\\jni FILES ${CAFFE_SRC_JNI})
 source_group(src\\layers\\cudnn FILES ${CAFFE_SRC_LAYERS_CUDNN})
 
 add_definitions(-DCAFFE_EXPORTS)
-#add_library(caffe SHARED ${CAFFE_COMPILE_CODE})
-add_library(caffe STATIC ${CAFFE_COMPILE_CODE})
+add_library(caffe SHARED ${CAFFE_COMPILE_CODE})
+#add_library(caffe STATIC ${CAFFE_COMPILE_CODE})
 target_link_libraries(caffe ${Caffe_LINKER_LIBS})
